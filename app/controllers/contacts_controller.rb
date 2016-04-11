@@ -3,6 +3,8 @@ class ContactsController < ApplicationController
 
   respond_to :html
 
+  before_action :authenticate_user!
+
   def index
     @contacts = Contact.all
     respond_with(@contacts)
@@ -21,7 +23,7 @@ class ContactsController < ApplicationController
   end
 
   def create
-    @contact = Contact.new(contact_params)
+    @contact = current_user.contacts.new(contact_params)
     @contact.save
     respond_with(@contact)
   end

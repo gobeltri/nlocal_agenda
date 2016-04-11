@@ -1,4 +1,10 @@
-<h1>Listing contacts</h1>
+<p>  
+  <span>You are signed as </span> 
+  <%= current_user.email %>
+  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+</p>
+
+<h1>nLocal Agenda</h1>
 
 <table>
   <thead>
@@ -35,3 +41,4 @@
 <br>
 
 <%= link_to 'New Contact', new_contact_path %>
+
