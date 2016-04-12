@@ -3,10 +3,10 @@
 <table>
   <thead>
     <tr>
+      <th>Avatar</th>
       <th>First name</th>
       <th>Last name</th>
       <th>Email</th>
-      <th>Avatar url</th>
       <th>Phone numbers</th>
       <th>Type</th>
       <th></th>
@@ -18,10 +18,10 @@
   <tbody>
     <% current_user.contacts.each do |contact| %>
       <tr>
+        <td><%= image_tag contact.avatar.url(:thumb) %></td>
         <td><%= contact.first_name %></td>
         <td><%= contact.last_name %></td>
         <td><%= contact.email %></td>
-        <td><%= contact.avatar_url %></td>
         <td><%= contact.phone_numbers %></td>
         <td><%= contact.contact_type %></td>
         <td><%= link_to 'Show', contact %></td>
