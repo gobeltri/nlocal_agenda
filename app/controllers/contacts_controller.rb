@@ -1,17 +1,33 @@
 class ContactsController < ApplicationController
   before_action :set_contact, only: [:show, :edit, :update, :destroy]
 
-  respond_to :html
+  respond_to :html, :json
 
   before_action :authenticate_user!
 
   def index
     @contacts = current_user.contacts.search(params[:search_name], params[:search_surname])
-    respond_with(@contacts)
+
+    respond_to do |format|
+      format.html {
+        respond_with(@contacts)
+      }
+      format.json {
+        respond_with(@contacts)
+      }
+    end
+    
   end
 
   def show
-    respond_with(@contact)
+    respond_to do |format|
+      format.html {
+        respond_with(@contact)
+      }
+      format.json {
+        respond_with(@contact)
+      }
+    end
   end
 
   def new

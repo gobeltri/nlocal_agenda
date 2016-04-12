@@ -1,4 +1,6 @@
 NlocalAgenda::Application.routes.draw do
+
+  # To check JSON straight away, add this param -> defaults: {format: :json}
   resources :contacts
 
   devise_for :users
