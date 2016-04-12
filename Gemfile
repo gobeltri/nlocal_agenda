@@ -50,3 +50,8 @@ end
 
 gem 'devise'
 gem "paperclip", "~> 5.0.0.beta1"
+
+group :test do
+  gem "factory_girl_rails", "~> 4.0"
+  gem 'faker', '~> 1.6', '>= 1.6.3'
+end
