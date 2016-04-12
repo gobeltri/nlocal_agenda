@@ -27,10 +27,15 @@
     <%= f.label :avatar_url %><br>
     <%= f.file_field :avatar_url %>
   </div>
+
+  <!-- 5 Phone numbers maximum by default -->
   <div class="field">
     <%= f.label :phone_numbers %><br>
-    <%= f.text_field :phone_numbers %>
+    <% 5.times do %>
+      <input type="text" name="contact[phone_numbers][]" value="" />
+    <% end %>
   </div>
+
   <div class="field">
     <%= f.label :contact_type %><br>
     <%= f.select :contact_type,  %w[Friends Family Colleagues] %>
