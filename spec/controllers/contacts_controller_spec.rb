@@ -38,7 +38,8 @@ RSpec.describe ContactsController, type: :controller do
 
   describe "GET #index" do
     it "assigns all contacts as @contacts" do
-      contact = Contact.create! valid_attributes
+      sign_in FactoryGirl.create(:user)
+      contact = FactoryGirl.create(:contact)
       get :index, {}, valid_session
       expect(assigns(:contacts)).to eq([contact])
     end
@@ -46,7 +47,8 @@ RSpec.describe ContactsController, type: :controller do
 
   describe "GET #show" do
     it "assigns the requested contact as @contact" do
-      contact = Contact.create! valid_attributes
+      sign_in FactoryGirl.create(:user)
+      contact = FactoryGirl.create(:contact)
       get :show, {:id => contact.to_param}, valid_session
       expect(assigns(:contact)).to eq(contact)
     end
@@ -54,6 +56,7 @@ RSpec.describe ContactsController, type: :controller do
 
   describe "GET #new" do
     it "assigns a new contact as @contact" do
+      sign_in FactoryGirl.create(:user)
       get :new, {}, valid_session
       expect(assigns(:contact)).to be_a_new(Contact)
     end
@@ -61,7 +64,8 @@ RSpec.describe ContactsController, type: :controller do
 
   describe "GET #edit" do
     it "assigns the requested contact as @contact" do
-      contact = Contact.create! valid_attributes
+      sign_in FactoryGirl.create(:user)
+      contact = FactoryGirl.create(:contact)
       get :edit, {:id => contact.to_param}, valid_session
       expect(assigns(:contact)).to eq(contact)
     end
@@ -71,8 +75,9 @@ RSpec.describe ContactsController, type: :controller do
     context "with valid params" do
       it "creates a new Contact" do
         expect {
-          post :create, {:contact => valid_attributes}, valid_session
-        }.to change(Contact, :count).by(1)
+          sign_in FactoryGirl.create(:user)
+          FactoryGirl.create(:contact)
+          }.to change(Contact, :count).by(1)
       end
 
       it "assigns a newly created contact as @contact" do
