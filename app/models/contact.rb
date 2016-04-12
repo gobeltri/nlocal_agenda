@@ -23,4 +23,16 @@ class Contact < ActiveRecord::Base
   validates :last_name, presence: true
   validates :email, presence: true
   validates :email, uniqueness: true
+
+  def self.search(search_name, search_surname)
+  	if search_name && search_surname
+  	  self.where('first_name LIKE ? AND last_name LIKE ?', "%#{search_name}%", "%#{search_surname}%")
+  	elsif search_name
+  	  self.where('first_name LIKE ?', "%#{search_name}%")
+  	elsif search_surname
+  	  self.where('last_name LIKE ?', "%#{search_surname}%")	
+  	else
+  	  self.all
+  	end
+  end
 end

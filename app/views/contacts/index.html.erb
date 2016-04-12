@@ -1,5 +1,13 @@
 <h1>nLocal Agenda</h1>
 
+<%= form_tag contacts_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search_name, params[:search_name], :placeholder => 'Name' %>
+    <%= text_field_tag :search_surname, params[:search_surname], :placeholder => 'Surname' %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+
 <table>
   <thead>
     <tr>
@@ -16,7 +24,7 @@
   </thead>
 
   <tbody>
-    <% current_user.contacts.each do |contact| %>
+    <% @contacts.each do |contact| %>
       <tr>
         <td><%= image_tag contact.avatar.url(:thumb) %></td>
         <td><%= contact.first_name %></td>

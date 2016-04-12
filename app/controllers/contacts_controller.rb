@@ -6,7 +6,7 @@ class ContactsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @contacts = Contact.all
+    @contacts = current_user.contacts.search(params[:search_name], params[:search_surname])
     respond_with(@contacts)
   end
 
